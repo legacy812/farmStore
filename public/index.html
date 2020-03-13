@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<script lang="en">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -8,49 +8,7 @@
 </head>
 
 <body>
-  <form>
-    <p>
-      <label for="item">item</label>
-      <input type="text" name="item" id="item">
-    </p>
-    <p>
-      <button id="addItem">Add Item</button>
-    </p>
-  </form>
-  <ul id="items">
-  </ul>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script>
-    const getItems = () => {
-      document.getElementById('items').innerHTML = ''
-      axios.get('/api/items')
-        .then(({
-          data: items
-        }) => {
-          items.forEach(({
-            text
-          }) => {
-            let itemElem = document.createElement('li')
-            itemElem.textContent = text
-            document.getElementById('items').append(itemElem)
-          })
-        })
-        .catch(err => console.error(err))
-    }
-
-    document.getElementById('addItem').addEventListener('click', event => {
-      event.preventDefault()
-      axios.post('/api/items', {
-          text: document.getElementById('item').value
-        })
-        .then(() => {
-          document.getElementById('item').value = ''
-          getItems()
-        })
-    })
-
-    getItems()
-  </script>
+ 
 </body>
 
-</script>
+</html>
