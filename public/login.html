@@ -36,7 +36,8 @@
           password: document.getElementById('log-password').value
         })
           .then(user => {
-            window.location.replace('/')
+            console.log(user)
+            // window.location.replace('/')
           })
           .catch(e => console.error(e))
       }
