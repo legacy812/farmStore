@@ -9,6 +9,10 @@ const Item = model('item', new Schema({
     type: String,
     required: true,
   },
+  quantity: {
+    type: Integer,
+    required: true,
+  },
   price: {
     type: Integer,
   }
