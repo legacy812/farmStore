@@ -15,17 +15,19 @@
 <body>
   <div class="uk-width-1-4@l uk-container uk-flex uk-flex-center uk-card uk-card-default uk-card-body">
     <div class="uk-margin-top">
+      <div id="alerts"></div>
       <form action="">
-        <h2 class="uk-header uk-text-muted">Please Register</h2>
-        <div id="alerts"></div>
-        <input type="text" id="reg-first-name" class="uk-input uk-margin-small-bottom" placeholder="First Name">
-        <input type="text" id="reg-last-name" class="uk-input uk-margin-small-bottom" placeholder="Last Name">
-        <input type="text" id="reg-email" class="uk-input uk-margin-small-bottom" placeholder="email@email.com">
-        <input type="text" id="reg-username" class="uk-input uk-margin-small-bottom" placeholder="Username">
-        <input type="password" id="reg-password" class="uk-input uk-margin-small-bottom" placeholder="Password">
-        <input type="password" id="reg-password-confirm" class="uk-input uk-margin-small-bottom" placeholder="Confirm Password">
-        <p class="uk-text-right uk-align-right uk-text-small">Already a villager? <a href="./login.html">Login</a></p>
-        <button id="register-btn" class="uk-button uk-button-primary uk-width-1-1">Register</button>
+        <div id="form-inputs">
+          <h2 class="uk-header uk-text-muted">Please Register</h2>
+          <input type="text" id="reg-first-name" class="uk-input uk-margin-small-bottom" placeholder="First Name">
+          <input type="text" id="reg-last-name" class="uk-input uk-margin-small-bottom" placeholder="Last Name">
+          <input type="text" id="reg-email" class="uk-input uk-margin-small-bottom" placeholder="email@email.com">
+          <input type="text" id="reg-username" class="uk-input uk-margin-small-bottom" placeholder="Username">
+          <input type="password" id="reg-password" class="uk-input uk-margin-small-bottom" placeholder="Password">
+          <input type="password" id="reg-password-confirm" class="uk-input uk-margin-small-bottom" placeholder="Confirm Password">
+          <p class="uk-text-right uk-align-right uk-text-small">Already a villager? <a href="./login.html">Login</a></p>
+          <button id="register-btn" class="uk-button uk-button-primary uk-width-1-1">Register</button>
+        </div>
       </form>
     </div>
   </div>
@@ -56,7 +58,22 @@
             email: document.getElementById('reg-email').value,
             password: document.getElementById('reg-password').value
           })
-          .then(() => res.sendStatus(200))
+          .then(response => {
+            document.getElementById('reg-first-name').value,
+            document.getElementById('reg-last-name').value,
+            document.getElementById('reg-username').value,
+            document.getElementById('reg-email').value,
+            document.getElementById('reg-password').value
+
+            document.getElementById('alerts').innertHTML = `
+            <p class="uk-text-success">You are now registered!</p>
+            <p class="uk-text-muted">If you are not automatically redirected, click <a href="/login">Here</a></p>
+            `
+
+            setTimeout(() => { window.location.replace('/login')}, 3000)
+
+            document.getElementById('form-inputs').innerHTML = ``
+          })
           .catch(e => console.error(e))
         }
   </script>
